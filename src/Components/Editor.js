@@ -1,26 +1,71 @@
 import React, { Component } from "react";
-
+import "./Editor.css";
 class Editor extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      markdown: "",
-    };
+  componentDidMount() {
+    const textareaVal = (document.getElementById("editor").value = strMarkdown);
+    this.props.handleChange(textareaVal);
   }
   render() {
     return (
-      <div>
-        <h1>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officiis
-          ducimus voluptatibus quos reiciendis sapiente consectetur aliquam
-          minima placeat cupiditate velit. Libero quas doloribus similique atque
-          voluptates omnis officiis esse neque voluptatem autem aliquid sit
-          sequi vero accusantium ab, ullam quia nostrum maxime? Iste autem fuga
-          officia totam obcaecati eligendi in.
-        </h1>
+      <div className="h-100">
+        <textarea
+          id="editor"
+          type="text-box"
+          className="container-fluid border border-white "
+          placeholder="Start typing here..."
+          onChange={(event) => {
+            this.props.handleChange(event.target.value);
+          }}
+        />
       </div>
     );
   }
 }
+
 export default Editor;
+const strMarkdown =
+  "# Welcome to my React Markdown Previewer!\n" +
+  "\n" +
+  "## This is a sub-heading...\n" +
+  "### And here's some other cool stuff:\n" +
+  "  \n" +
+  "Heres some code, `<div></div>`, between 2 backticks.\n" +
+  "\n" +
+  "```\n" +
+  "// this is multi-line code:\n" +
+  "\n" +
+  "function anotherExample(firstLine, lastLine) {\n" +
+  "  if (firstLine == '```' && lastLine == '```') {\n" +
+  "    return multiLineCode;\n" +
+  "  }\n" +
+  "}\n" +
+  "```\n" +
+  "  \n" +
+  "You can also make text **bold**... whoa!\n" +
+  "Or _italic_.\n" +
+  "Or... wait for it... **_both!_**\n" +
+  "And feel free to go crazy ~~crossing stuff out~~.\n" +
+  "\n" +
+  "There's also [links](https://www.freecodecamp.com), and\n" +
+  "> Block Quotes!\n" +
+  "\n" +
+  "And if you want to get really crazy, even tables:\n" +
+  "\n" +
+  "Wild Header | Crazy Header | Another Header?\n" +
+  "------------ | ------------- | ------------- \n" +
+  "Your content can | be here, and it | can be here....\n" +
+  "And here. | Okay. | I think we get it.\n" +
+  "\n" +
+  "- And of course there are lists.\n" +
+  "  - Some are bulleted.\n" +
+  "     - With different indentation levels.\n" +
+  "        - That look like this.\n" +
+  "\n" +
+  "\n" +
+  "1. And there are numbererd lists too.\n" +
+  "1. Use just 1s if you want! \n" +
+  "1. But the list goes on...\n" +
+  "- Even if you use dashes or asterisks.\n" +
+  "* And last but not least, let's not forget embedded images:\n" +
+  "\n" +
+  "![React Logo w/ Text](https://goo.gl/Umyytc)";

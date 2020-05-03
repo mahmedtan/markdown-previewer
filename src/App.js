@@ -6,31 +6,34 @@ import Editor from "./Components/Editor";
 class App extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      markdown: "",
+    };
   }
+  handleChange = (markdown) => {
+    this.setState({
+      markdown,
+    });
+    console.log(this.state.markdown);
+  };
+
   render() {
-    // let str = marked("Marked in browser\n\nRendered by **marked**.");
     return (
-      <div class="container">
-        <div class="row">
-          <div classN="col-sm-8">col-sm-8</div>
-          <div class="col-sm-4">col-sm-4</div>
-        </div>
-        <div class="row">
-          <div class="col-sm">col-sm</div>
-          <div class="col-sm">col-sm</div>
-          <div class="col-sm">col-sm</div>
+      <div className="container-fluid fill-viewport">
+        <p className="title h1 text-responsive text-center">
+          Markdown Previewer
+        </p>
+        <div className="row p-3 h-100 no-gutters">
+          <div className="card col-sm m-1 ">
+            <h4 className="card-header ">Editor</h4>
+            <Editor handleChange={this.handleChange} />
+          </div>
+          <div className="card col-sm m-1 ">
+            <h4 className="card-header ">Previewer</h4>
+            <Previewer onClick={this.state.markdown}></Previewer>
+          </div>
         </div>
       </div>
-      // <div className="container-fluid">
-      //   <div className="row">
-      //     <div className="card col-sm ">
-      //       <Editor id="editor" />
-      //     </div>
-      //     <div className="card col-sm">
-      //       <Previewer id="preview"></Previewer>
-      //     </div>
-      //   </div>
-      // </div>
     );
   }
 }
